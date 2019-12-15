@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>CPP的小细节</title>
+    <meta name="description" content="">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.8bcf7c97.css" as="style"><link rel="preload" href="/assets/js/app.41706e8f.js" as="script"><link rel="preload" href="/assets/js/2.51389f50.js" as="script"><link rel="preload" href="/assets/js/10.cd0625d2.js" as="script"><link rel="prefetch" href="/assets/js/11.9bd4269c.js"><link rel="prefetch" href="/assets/js/12.a15ac871.js"><link rel="prefetch" href="/assets/js/13.dffbe176.js"><link rel="prefetch" href="/assets/js/14.0ce779eb.js"><link rel="prefetch" href="/assets/js/15.bb60422f.js"><link rel="prefetch" href="/assets/js/16.6af4ae15.js"><link rel="prefetch" href="/assets/js/17.48bb69a1.js"><link rel="prefetch" href="/assets/js/3.04b10534.js"><link rel="prefetch" href="/assets/js/4.9af38017.js"><link rel="prefetch" href="/assets/js/5.61ebafaf.js"><link rel="prefetch" href="/assets/js/6.208e3d0b.js"><link rel="prefetch" href="/assets/js/7.d6ae7451.js"><link rel="prefetch" href="/assets/js/8.1c422b70.js"><link rel="prefetch" href="/assets/js/9.003ef7de.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.8bcf7c97.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/nav.01.cpp/" class="nav-link router-link-active">CPP</a></div><div class="nav-item"><a href="/nav.02.python/" class="nav-link">Python</a></div><div class="nav-item"><a href="/nav.03.opencv/" class="nav-link">OpenCV</a></div><div class="nav-item"><a href="/nav.04.ros/" class="nav-link">ROS</a></div><div class="nav-item"><a href="/nav.05.dl/" class="nav-link">深度学习</a></div><div class="nav-item"><a href="/nav.06.about/" class="nav-link">about</a></div><div class="nav-item"><a href="https://github.com/Is060" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/nav.01.cpp/" class="nav-link router-link-active">CPP</a></div><div class="nav-item"><a href="/nav.02.python/" class="nav-link">Python</a></div><div class="nav-item"><a href="/nav.03.opencv/" class="nav-link">OpenCV</a></div><div class="nav-item"><a href="/nav.04.ros/" class="nav-link">ROS</a></div><div class="nav-item"><a href="/nav.05.dl/" class="nav-link">深度学习</a></div><div class="nav-item"><a href="/nav.06.about/" class="nav-link">about</a></div><div class="nav-item"><a href="https://github.com/Is060" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>CPP</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/nav.01.cpp/" class="sidebar-link">/nav.01.cpp/</a></li><li><a href="/nav.01.cpp/060_cpp_day01.html" class="sidebar-link">第一课 c++的入门</a></li><li><a href="/nav.01.cpp/060_cpp_day02.html" class="sidebar-link">第二课 vector和函数</a></li><li><a href="/nav.01.cpp/060_cpp_day03.html" class="sidebar-link">第三课 指针</a></li><li><a href="/nav.01.cpp/cmake.html" class="sidebar-link">CMake</a></li><li><a href="/nav.01.cpp/cpp_detail.html" class="active sidebar-link">CPP的小细节</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/nav.01.cpp/cpp_detail.html#小细节" class="sidebar-link">小细节</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/nav.01.cpp/cpp_detail.html#１-数组和指针" class="sidebar-link">１　数组和指针</a></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/cpp_detail.html#２-大小端模式" class="sidebar-link">２　大小端模式</a></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/cpp_detail.html#３-struct的对齐原则" class="sidebar-link">３　struct的对齐原则</a></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/cpp_detail.html#４-struct、union和enum" class="sidebar-link">４　struct、union和enum</a></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/cpp_detail.html#５-error-call-of-overloaded-‘abs-double-’-is-ambiguous" class="sidebar-link">５　error: call of overloaded ‘abs(double&amp;)’ is ambiguous</a></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/cpp_detail.html#６-lambda-函数与表达式" class="sidebar-link">６　Lambda 函数与表达式</a></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/cpp_detail.html#７-cmake-cxx-flags" class="sidebar-link">７　  CMAKE_CXX_FLAGS</a></li></ul></li></ul></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Python</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>OpenCV</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Ros</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>深度学习</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="cpp的小细节"><a href="#cpp的小细节" class="header-anchor">#</a> CPP的小细节</h1> <h2 id="小细节"><a href="#小细节" class="header-anchor">#</a> 小细节</h2> <h3 id="１-数组和指针"><a href="#１-数组和指针" class="header-anchor">#</a> １　数组和指针</h3> <p>数组在定义的时候是数组，传递给其他变量或者参数的时候，是指针</p> <h3 id="２-大小端模式"><a href="#２-大小端模式" class="header-anchor">#</a> ２　大小端模式</h3> <p>大端模式(big-endian)，数据的高字节，保存在内存的低地址中，而数据的低字节，保存在内存的高地址中。数据转换慢。</p> <p>小端模式(little-endian)，数据的高字节保存在内存的高地址中，而数据的低字节保存在内存的低地址中。数据转换快。</p> <blockquote><p>下面以unsigned int value = 0x12345678为例</p></blockquote> <table><thead><tr><th>内存地址</th> <th>little-endian存放内容</th> <th>big-endian存放内容</th></tr></thead> <tbody><tr><td>0x4000</td> <td>0x78</td> <td>0x12</td></tr> <tr><td>0x4001</td> <td>0x56</td> <td>0x34</td></tr> <tr><td>0x4002</td> <td>0x34</td> <td>0x56</td></tr> <tr><td>0x4003</td> <td>0x12</td> <td>0x78</td></tr></tbody></table> <h3 id="３-struct的对齐原则"><a href="#３-struct的对齐原则" class="header-anchor">#</a> ３　struct的对齐原则</h3> <p>原则一：<strong>结构体中元素是按照定义顺序一个一个放到内存中去的，但并不是紧密排列的。从结构体存储的首地址开始，每一个元素放置到内存中时，它都会认为内存是以它自己的大小来划分的，因此元素放置的位置一定</strong>会在自己宽度的整数倍上开始（以结构体变量首地址为0计算）。</p> <p>原则二：<strong>在经过第一原则分析后，检查计算出的存储单元是否为所有元素中最宽的元素的长度的整数倍，是，则结束；若不是，则补齐为它的整数倍。</strong></p> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+using namespace std;
+struct X{
+    char a;
+    int b;
+    double c;
+};
+int main(int argc, char *argv[]) {
+    cout&lt;&lt; sizeof(X)&lt;&lt;endl;// 结果 1６
+}
+// 从０开始，ａ占用０，空１－３，ｂ占用４－７，ｃ占用８－１５
+</code></pre></div><div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+using namespace std;
+struct X{
+    char a;
+    double c;
+    int b;
+};
+int main(int argc, char *argv[]) {
+    cout&lt;&lt; sizeof(X)&lt;&lt;endl;// 结果　24
+}
+// 从０开始，ａ占用０，空１－７，ｃ占用８－１５，ｂ占用１６－１９，空２０－２３
+</code></pre></div><div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+using namespace std;
+struct X{
+    double c;
+    char a;
+    int b;
+};
+int main(int argc, char *argv[]) {
+    cout&lt;&lt; sizeof(X)&lt;&lt;endl;// 结果　16
+}
+// 从０开始 c占用0-7，a占用８，空９－１１，ｂ占用１２－１５
+</code></pre></div><div class="language-C++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+using namespace std;
+struct X{
+    double c;
+    char a;
+    int b;
+    char d;
+};
+int main(int argc, char *argv[]) {
+    cout&lt;&lt; sizeof(X)&lt;&lt;endl;// 结果　24
+}
+// 从０开始，ｃ占用０－７，ａ占用８，空９－１１，ｂ占用１２－１５，ｄ占用１６，空１７－２３
+</code></pre></div><div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+
+using namespace std;
+struct X{
+    double c;
+    char a;
+    int b;
+    char d;
+    int e;
+};
+int main(int argc, char *argv[]) {
+    cout&lt;&lt; sizeof(X)&lt;&lt;endl;//　结果　24　
+}
+// 从０开始，ｃ占用０－７，ａ占用８，空９－１１，ｂ占用１２－１５，ｄ占用１６，空１７－１９，ｅ占用２０－２３
+</code></pre></div><div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+
+using namespace std;
+struct X{
+    int e;
+    double c;
+    char a;
+    int b;
+    char d;
+};
+int main(int argc, char *argv[]) {
+    cout&lt;&lt; sizeof(X)&lt;&lt;endl; // 结果　32
+}
+// 从０开始，ｅ占用０－３，空４－７，ｃ占用８－１５，ａ占１６，空１７－１９，ｂ占用２０－２３，ｄ占用２４，空２５－３１
+</code></pre></div><div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+
+using namespace std;
+int temp = 1;
+struct point{
+    int * p = &amp;temp;
+};
+int main(int argc, char *argv[]) {
+    cout&lt;&lt; sizeof(X)&lt;&lt;endl;
+    cout&lt;&lt; sizeof(point)&lt;&lt;endl; // 结果　８
+</code></pre></div><div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+
+using namespace std;
+struct X{
+    char a;
+    int b;
+    double c;
+};
+struct Y{
+    char a;
+    X b;
+};
+int main(int argc, char *argv[]) {
+    cout&lt;&lt; sizeof(X)&lt;&lt;endl;// 16
+    cout&lt;&lt; sizeof(Y)&lt;&lt;endl;// 24
+}
+// 以Ｘ中最长元素为占位数，不是以sizeof(X)为占位数
+</code></pre></div><h3 id="４-struct、union和enum"><a href="#４-struct、union和enum" class="header-anchor">#</a> ４　struct、union和enum</h3> <h4 id="struct"><a href="#struct" class="header-anchor">#</a> struct</h4> <div class="language-c++ extra-class"><pre class="language-text"><code>struct structure_name {
+member_type1 member_name1;
+member_type2 member_name2;
+member_type3 member_name3;
+.
+.
+} object_names;
+// struct是一组数据元素一个名字，这些数据元素，作为成员，可以有不同类型和不同长度
+</code></pre></div><h4 id="union"><a href="#union" class="header-anchor">#</a> union</h4> <div class="language-c++ extra-class"><pre class="language-text"><code>union union_name {
+  member_type1 member_name1;
+  member_type2 member_name2;
+  member_type3 member_name3;
+  .
+  .
+} object_names;
+</code></pre></div><blockquote><p>union，内部只能是结构体（struct）和普通变量类型（如int等），共用体的所有成员占用同一段内存，修改一个成员会影响其余所有成员，共用体占用的内存等于最长的成员占用的内存，共用体使用了内存覆盖技术，同一时刻只能保存一个成员的值，如果对新的成员赋值，就会把原来成员的值覆盖掉。</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>union data{
+    int n;
+    char ch;
+    double f;
+};
+union data a, b, c;
+</code></pre></div><div class="language-c++ extra-class"><pre class="language-text"><code>union data{
+    int n;
+    char ch;
+    double f;
+} a, b, c;
+</code></pre></div><div class="language-c++ extra-class"><pre class="language-text"><code>union{
+    int n;
+    char ch;
+    double f;
+} a, b, c;
+</code></pre></div><h4 id="enum"><a href="#enum" class="header-anchor">#</a> enum</h4> <div class="language-c++ extra-class"><pre class="language-text"><code>enum enumeration_name {
+  value1,
+  value2,
+  value3,
+  .
+  .
+} object_names;
+</code></pre></div><div class="language-c++ extra-class"><pre class="language-text"><code>enum Week {SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY};
+</code></pre></div><blockquote><p>其中SUNDAY = 0,MONDAY = 1……SATURDAY = 6。也就是说，第１个枚举值代表0，第2个枚举值代表1，这样依次递增1。</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code> enum Week {MONDAY = 1,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY,SUNDAY};
+</code></pre></div><blockquote><p>其中MONDAY等于1，这样，TUESDAY就将等于2，直接到SUNDAY等于7。</p></blockquote> <h3 id="５-error-call-of-overloaded-‘abs-double-’-is-ambiguous"><a href="#５-error-call-of-overloaded-‘abs-double-’-is-ambiguous" class="header-anchor">#</a> ５　error: call of overloaded ‘abs(double&amp;)’ is ambiguous</h3> <p>在C语言中，除了abs()函数存在于<code>&lt;stdlib.h&gt;</code>，其它数学函数都存在于<code>&lt;math.h&gt;</code></p> <p>在C++中<code>&lt;cmath&gt;</code>定义了abs()函数,可以对浮点数进行操作，<code>&lt;cstdlib&gt;</code>定义了abs()函数只能对整型操作。fabs()函数存在于<code>&lt;cmath&gt;</code>。</p> <h3 id="６-lambda-函数与表达式"><a href="#６-lambda-函数与表达式" class="header-anchor">#</a> ６　Lambda 函数与表达式</h3> <div class="language-C++ extra-class"><pre class="language-text"><code>[capture](parameters)-&gt;return-type{body}
+</code></pre></div><blockquote><p>[]      // 沒有定义任何变量。使用未定义变量会引发错误。
+[x, &amp;y] // x以传值方式传入（默认），y以引用方式传入。
+[&amp;]     // 任何被使用到的外部变量都隐式地以引用方式加以引用。
+[=]     // 任何被使用到的外部变量都隐式地以传值方式加以引用。
+[&amp;, x]  // x显式地以传值方式加以引用。其余变量以引用方式加以引用。
+[=, &amp;z] // z显式地以引用方式加以引用。其余变量以传值方式加以引用。</p></blockquote> <blockquote><p>对于[=]或[&amp;]的形式，lambda 表达式可以直接使用 this 指针。但是，对于[]的形式，如果要使用 this 指针，必须显式传入</p> <div class="language-c++ extra-class"><pre class="language-text"><code>[this]() { this-&gt;someFunc(); }();
+</code></pre></div></blockquote> <h3 id="７-cmake-cxx-flags"><a href="#７-cmake-cxx-flags" class="header-anchor">#</a> ７　  <code>CMAKE_CXX_FLAGS</code></h3> <p>在cmake脚本中，设置编译选项可c以通过<code>add_compile_options</code>命令，也可以通过set命令修改<code>CMAKE_CXX_FLAGS</code>或<code>CMAKE_C_FLAGS</code>。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">12/15/2019, 7:29:17 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/nav.01.cpp/cmake.html" class="prev">CMake</a></span> <span class="next"><a href="/nav.02.python/">/nav.02.python/</a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.41706e8f.js" defer></script><script src="/assets/js/2.51389f50.js" defer></script><script src="/assets/js/10.cd0625d2.js" defer></script>
+  </body>
+</html>

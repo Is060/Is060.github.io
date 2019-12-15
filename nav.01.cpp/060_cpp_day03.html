@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>第三课 指针</title>
+    <meta name="description" content="">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.8bcf7c97.css" as="style"><link rel="preload" href="/assets/js/app.41706e8f.js" as="script"><link rel="preload" href="/assets/js/2.51389f50.js" as="script"><link rel="preload" href="/assets/js/8.1c422b70.js" as="script"><link rel="prefetch" href="/assets/js/10.cd0625d2.js"><link rel="prefetch" href="/assets/js/11.9bd4269c.js"><link rel="prefetch" href="/assets/js/12.a15ac871.js"><link rel="prefetch" href="/assets/js/13.dffbe176.js"><link rel="prefetch" href="/assets/js/14.0ce779eb.js"><link rel="prefetch" href="/assets/js/15.bb60422f.js"><link rel="prefetch" href="/assets/js/16.6af4ae15.js"><link rel="prefetch" href="/assets/js/17.48bb69a1.js"><link rel="prefetch" href="/assets/js/3.04b10534.js"><link rel="prefetch" href="/assets/js/4.9af38017.js"><link rel="prefetch" href="/assets/js/5.61ebafaf.js"><link rel="prefetch" href="/assets/js/6.208e3d0b.js"><link rel="prefetch" href="/assets/js/7.d6ae7451.js"><link rel="prefetch" href="/assets/js/9.003ef7de.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.8bcf7c97.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/nav.01.cpp/" class="nav-link router-link-active">CPP</a></div><div class="nav-item"><a href="/nav.02.python/" class="nav-link">Python</a></div><div class="nav-item"><a href="/nav.03.opencv/" class="nav-link">OpenCV</a></div><div class="nav-item"><a href="/nav.04.ros/" class="nav-link">ROS</a></div><div class="nav-item"><a href="/nav.05.dl/" class="nav-link">深度学习</a></div><div class="nav-item"><a href="/nav.06.about/" class="nav-link">about</a></div><div class="nav-item"><a href="https://github.com/Is060" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/nav.01.cpp/" class="nav-link router-link-active">CPP</a></div><div class="nav-item"><a href="/nav.02.python/" class="nav-link">Python</a></div><div class="nav-item"><a href="/nav.03.opencv/" class="nav-link">OpenCV</a></div><div class="nav-item"><a href="/nav.04.ros/" class="nav-link">ROS</a></div><div class="nav-item"><a href="/nav.05.dl/" class="nav-link">深度学习</a></div><div class="nav-item"><a href="/nav.06.about/" class="nav-link">about</a></div><div class="nav-item"><a href="https://github.com/Is060" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>CPP</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/nav.01.cpp/" class="sidebar-link">/nav.01.cpp/</a></li><li><a href="/nav.01.cpp/060_cpp_day01.html" class="sidebar-link">第一课 c++的入门</a></li><li><a href="/nav.01.cpp/060_cpp_day02.html" class="sidebar-link">第二课 vector和函数</a></li><li><a href="/nav.01.cpp/060_cpp_day03.html" class="active sidebar-link">第三课 指针</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day03.html#一-指针" class="sidebar-link">一 指针</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day03.html#_1-什么是指针" class="sidebar-link">1 什么是指针</a></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day03.html#_2-指针使用" class="sidebar-link">2 指针使用</a></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day03.html#_3-指针dereference（-解引用）" class="sidebar-link">3 指针dereference（ 解引用）</a></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day03.html#_4-动态内存分配" class="sidebar-link">4 动态内存分配</a></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day03.html#_5-数组和指针的关系" class="sidebar-link">5 数组和指针的关系</a></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day03.html#_6-指针算数" class="sidebar-link">6 指针算数</a></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day03.html#_7-指针与常量" class="sidebar-link">7 指针与常量</a></li></ul></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day03.html#二-指针与函数" class="sidebar-link">二 指针与函数</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day03.html#_1-参数传递指针" class="sidebar-link">1 参数传递指针</a></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day03.html#_2-函数返回指针" class="sidebar-link">2 函数返回指针</a></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day03.html#_3-二级指针" class="sidebar-link">3 二级指针</a></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day03.html#_4-函数指针" class="sidebar-link">4 函数指针</a></li></ul></li></ul></li><li><a href="/nav.01.cpp/cmake.html" class="sidebar-link">CMake</a></li><li><a href="/nav.01.cpp/cpp_detail.html" class="sidebar-link">CPP的小细节</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Python</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>OpenCV</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Ros</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>深度学习</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="第三课-指针"><a href="#第三课-指针" class="header-anchor">#</a> 第三课 指针</h1> <h2 id="一-指针"><a href="#一-指针" class="header-anchor">#</a> 一 指针</h2> <h3 id="_1-什么是指针"><a href="#_1-什么是指针" class="header-anchor">#</a> 1 什么是指针</h3> <blockquote><p>指针其实就是一个变量，不过它的值是一个内存地址 ， 这个地址可以是变量或者一个函数的地址</p> <p>当你声明明一个变量的时候，计算机会将指定的一块内存空间和变量名进行绑定；这个定义很简单，但其实很抽象，例如：int x = 5; 这是一句最简单的变量赋值语句了， 我们常说“x等于5”，其实这种说法是错误的，x仅仅是变量的一个名字而已，它本身不等于任何值的。这条statement的正确翻译应该是：“将5赋值于名字叫做x的内存空间”，其本质是将值5赋值到一块内存空间，而这个内存空间名叫做x。切记：x只是简单的一个别名而已，x不等于任何值。</p></blockquote> <ul><li>为什么需要指针?</li></ul> <blockquote><p>实际上是可以的，但是并不是所有的情况都可以。比如：</p> <ol><li>在内部函数中，可以使用指针访问外部函数中定义的某个变量x, 因为它并不是声明在自己的函数范围内。</li> <li>指针在处理函数传递数组的时候非常高效</li> <li>我们还可以在堆中申请一块动态内存，这块内存甚至没有一个变量名称，唯一的访问方式是通过指针。</li> <li>可以使用你指针访问指定的内存地址（游戏修改器）</li></ol></blockquote> <h3 id="_2-指针使用"><a href="#_2-指针使用" class="header-anchor">#</a> 2 指针使用</h3> <h4 id="a-声明指针"><a href="#a-声明指针" class="header-anchor">#</a> a 声明指针</h4> <blockquote><ol><li>声明指针的时候要记得初始化，如果没有初始化，指针存放的将会是垃圾数据(因为你根本不知道它指向何方)</li> <li>可以使用nullptr（c++11）进行指针初始化，初始化存放的值是 0</li></ol></blockquote> <h4 id="b-初始化指针"><a href="#b-初始化指针" class="header-anchor">#</a> b 初始化指针</h4> <h4 id="c-指针地址和大小"><a href="#c-指针地址和大小" class="header-anchor">#</a> c 指针地址和大小</h4> <blockquote><p>指针实际上也是一个变量，也会有自己的内存空间，也会有自己的长度大小。获取指针的内存地址，依然使用取地址符 <code>&amp;</code> ， 长度大小依然使用<code>sizeof</code> 来获取</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+//指针的单词是pointer　所以声明指针，通常会带上一个字母p
+int main() {
+   
+    string name = &quot;zhangsan&quot;;
+
+    //age 变量名称 , int修饰的是数据类型．
+    int age =10 ;
+
+    //指针里面放的是地址，　int修饰的是这个指针指向的数据类型．
+    //指针前面的类型和指向的数据类型必须一致
+    int *a  = &amp;age;
+
+    //声明一个指针
+    int * p_age=nullptr;
+
+    //初始化，给指针赋值，让指针指向age
+    p_age = &amp;age;
+
+    //
+    cout &lt;&lt; &quot;age的数据是：&quot; &lt;&lt; age &lt;&lt; endl;
+    cout &lt;&lt; &quot;age的地址是：&quot; &lt;&lt; &amp;age &lt;&lt; endl;  // 0x7ffdc0d0c3bc
+    cout &lt;&lt; &quot;age的占用空间大小是：&quot; &lt;&lt; sizeof(age) &lt;&lt; endl;  // 4
+    cout &lt;&lt; &quot;char的占用空间大小是：&quot; &lt;&lt; sizeof(char) &lt;&lt; endl;  // 1
+    cout &lt;&lt; &quot;double的占用空间大小是：&quot; &lt;&lt; sizeof(double) &lt;&lt; endl;  // 1
+    
+    cout &lt;&lt; &quot;p_age的数据是：&quot; &lt;&lt; p_age &lt;&lt; endl;  //0x7ffdc0d0c3bc
+    cout &lt;&lt; &quot;p_age的地址是：&quot; &lt;&lt; &amp;p_age &lt;&lt; endl;
+    cout &lt;&lt; &quot;p_age的占用空间大小是：&quot; &lt;&lt; sizeof(p_age) &lt;&lt; endl;  // 8   32位系统是4  ，64为系统是8
+    cout &lt;&lt; &quot;char指针的占用空间大小是：&quot; &lt;&lt; sizeof(char*) &lt;&lt; endl;  // 8
+    cout &lt;&lt; &quot;double指针的占用空间大小是：&quot; &lt;&lt; sizeof(double*) &lt;&lt; endl;  // 8
+
+    // 
+    cout &lt;&lt; &quot;p_age指向的数据是：&quot; &lt;&lt; *p_age &lt;&lt; endl;
+
+    return 0;
+}
+</code></pre></div><h3 id="_3-指针dereference（-解引用）"><a href="#_3-指针dereference（-解引用）" class="header-anchor">#</a> 3 指针dereference（ 解引用）</h3> <blockquote><p>所谓的指针dereference就是，指针就是一个变量，存放的是一个地址。这个地址有可能是变量 a 或者是变量b的地址。有了这个地址，我们可以通过<strong>dereference</strong>操作符 <code>*</code> 去获取到a对应的值或者b对应的值。</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+
+int main() {
+
+    int age = 10 ;
+
+    int *p_age = &amp;age;  //这里的 * 仅仅使用标识这个p_age是一个指针
+
+    //1. 直接使用变量age获取数据
+    cout &lt;&lt; &quot;使用变量获取 age = &quot; &lt;&lt; age &lt;&lt; endl; // 10
+    age = 88;
+    cout &lt;&lt; &quot;使用变量获取 age = &quot; &lt;&lt; age &lt;&lt; endl; // 88
+
+    //2. 使用指针来获取数据  这里的*表示解引用。
+    cout &lt;&lt; &quot;使用指针获取age = &quot; &lt;&lt; *p_age &lt;&lt; endl; // 88
+    *p_age = 99 ;
+    cout &lt;&lt; &quot;使用指针获取age = &quot; &lt;&lt; *p_age &lt;&lt; endl; // 99
+
+
+    //3.指针在声明的时候必须初始化。!!!!!!
+     //指针声明然后没有初始化，是很危险的．因为它会指向随机的区域，如果未来使用这个指针修改了指向区域的数据
+     //有可能这个区域是其他程序申请的内存空间　．
+    int *p1 = 0; // 没有任何指向。 这个指针存放的数据是0. 如果有指向，存放的数据是内存地址（16进制）
+    int *p2 = NULL; //空指针 ，也是没有指向
+    int *p3 = nullptr; //建议使用这种 。 空指针 ，也就是没有指向 ，会报 nullpointerexception  空指针异常
+
+    cout &lt;&lt; &quot;p1的数据是：&quot; &lt;&lt; p1 &lt;&lt; endl; // 0
+    cout &lt;&lt; &quot;p2的数据是：&quot; &lt;&lt; p2 &lt;&lt; endl; // 0
+    cout &lt;&lt; &quot;p3的数据是：&quot; &lt;&lt; p3 &lt;&lt; endl; // 0
+
+    //如果指针是空指针，是不能使用解引用的。有异常。
+    cout &lt;&lt; &quot;p1指向的数据是：&quot; &lt;&lt; *p1 &lt;&lt; endl;
+    cout &lt;&lt; &quot;p2指向的数据是：&quot; &lt;&lt; *p2 &lt;&lt; endl;
+    cout &lt;&lt; &quot;p3指向的数据是：&quot; &lt;&lt; *p3 &lt;&lt; endl;
+
+    return 0;
+}
+</code></pre></div><h3 id="_4-动态内存分配"><a href="#_4-动态内存分配" class="header-anchor">#</a> 4 动态内存分配</h3> <blockquote><p>在进行编码的时候，我们根本不知道需要多少内存空间。举个例子，比如我们需要存储学生的数据，这时候可以使用数组来存储，那么就必须知道学生的具体人数。如果不知道，就无法使用数组了。实际上之前学过的vector就是使用动态内存。但是有时候，我们如果需要存放的是一单个对象数据，并不是一堆数据。用vector就有点浪费了。</p> <p>为了解决上述问题，C++ 提供了一种“动态内存分配”机制，使得程序可以在运行期间，根据实际需要，要求操作系统临时分配一片内存空间用于存放数据。此种内存分配是在程序运行中进行的，而不是在编译时就确定的，因此称为“动态内存分配”。申请动态内存</p></blockquote> <h4 id="a-申请内存-和-释放内存"><a href="#a-申请内存-和-释放内存" class="header-anchor">#</a> a 申请内存 和 释放内存</h4> <blockquote><p>可以使用<code>new</code> 关键字来申请动态内存 ， <code>new</code> 开辟出来的空间都位于堆内存中。</p> <p><code>new</code> 常和 <code>delete</code> 成对出现，使用 <code>new</code> 开辟空间， 使用 <code>delete</code> 释放申请的内存，避免造成内存泄漏。</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+void run(){
+
+    int number  = 200;
+
+}
+
+int main() {
+
+    run(); //只要这行代码执行完毕，里面的number占用的空间，即被释放．
+
+    int age= 10;  //存放在栈
+    cout &lt;&lt; &quot;age = &quot; &lt;&lt; age &lt;&lt;endl;
+
+    
+    //1. new关键字用于在堆内存中开辟空间，然后返回的是这块空间的内存地址。
+    //思考一个问题：为什么new返回的是一个地址呢？　 因为开辟的内存没有明确的标识与之绑定
+    //为了以后能够操作这块内存，所以直接返回的是地址．
+    int *age2 = new int(20); //存放在堆内存  // ---- C 库函数 void *malloc(size_t size) 分配所需的内存空间，并返回一个指向它的指针。
+    cout &lt;&lt; &quot;age2 = &quot; &lt;&lt; *age2 &lt;&lt;endl;
+
+
+    //2.　释放内存  不要进行多次释放
+    delete age2; // ---- C 库函数 void free(void *ptr) 释放之前调用 calloc、malloc 或 realloc 所分配的内存空间
+    age2 = nullptr ; // 表示这个指针没有任何指向．
+
+
+    return 0;
+}
+</code></pre></div><h4 id="b-数组操作"><a href="#b-数组操作" class="header-anchor">#</a> b 数组操作</h4> <blockquote><p>使用<code>new int[]</code> 来给数组申请动态内存 , 然后使用 <code>delete[]</code> 释放申请的内存</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+struct stu{
+
+};
+
+int main() {
+
+    int *age = new int(10);
+    delete age;  //如果删除普通的数据申请的内存，　delete  - delete xx
+
+
+    //开辟了堆内存
+    int *scores = new int[10]{55,66,77,88,99,1,2,3,4,5};
+   /* for (int i = 0; i &lt; 10; ++i) {
+        scores[i] = 90 +i;
+    }
+*/
+    for (int i = 0; i &lt; 10; ++i) {
+       cout &lt;&lt; &quot;scores =&quot; &lt;&lt;scores[i] &lt;&lt; endl;
+    }
+
+    //只有在删除申请的数组内存，才需要跟上　[]  delete[]xxx
+    delete []scores;
+
+
+
+    //结构体
+    stu *s  = new stu();
+    delete s;
+
+    return 0;
+}
+</code></pre></div><h4 id="c-关于动态内存的思考"><a href="#c-关于动态内存的思考" class="header-anchor">#</a> c 关于动态内存的思考</h4> <blockquote><p>通常情况下，定义的变量存储的位置位于栈内存中，栈内存的数据，当函数执行结束后即会被释放，这是栈内存的机制自己决定的，并且栈内存中由于内存并不是太大，所以不建议大量的数据存放在栈内存。</p> <p>而堆内存中的容量相比栈内存要大多了，但是堆内存并不提供回收释放的工作，允许程序申请内存空间，但是同时也要自己负责内存空间的释放工作。</p> <p>不能一概而论哪一种是最优的决定，要根据开发场景来决定。</p></blockquote> <h3 id="_5-数组和指针的关系"><a href="#_5-数组和指针的关系" class="header-anchor">#</a> 5 数组和指针的关系</h3> <blockquote><p>数组其实和指针是存在一些内在联系的，如下：</p> <ol><li>根据数组名字取到的内存地址，是数组的第一个元素地址</li> <li>指针其实是一个变量，这个变量存放的值是内存地址</li> <li>如果一个指针和数组是同样的类型，并且指针存放的地址正好是数组的某个元素地址，那么可以通过该指针操作数组</li></ol></blockquote> <h4 id="a-数组与指针"><a href="#a-数组与指针" class="header-anchor">#</a> a 数组与指针</h4> <div class="language-c++ extra-class"><pre class="language-text"><code>#include&lt;iostream&gt;
+using namespace std;
+
+int main(){
+    
+    //定义3个长度的int类型数组
+    int scores []{100, 95 , 98};
+
+    //直接打印数组，实际上是打印数组第一个元素的地址   0x61fec8
+    cout &lt;&lt; scores  &lt;&lt; endl;  
+    
+    //使用*操作符是根据地址获取数据，所以取到的是第一个元素 ： 100
+    cout &lt;&lt; *scores  &lt;&lt; endl; 
+
+     //声明指针，存放的是数组第一个元素的地址
+    int *score_ptr{scores};  
+    
+    //打印指针，其实输出它保存的地址，即数组首元素地址 0x61fec8
+    cout &lt;&lt; score_ptr  &lt;&lt; endl;  
+    
+    //解引用，输出的是数组的首元素 100
+    cout &lt;&lt; *score_ptr  &lt;&lt; endl; 
+    
+    return 0 ;
+}
+</code></pre></div><h4 id="b-指针运算"><a href="#b-指针运算" class="header-anchor">#</a> b 指针运算</h4> <blockquote><p>如果指针指向的是数组的第一个元素地址，那么同样可以通过对指针进行加减运算，来获取其他的元素 。值得注意的是，指针的相加并不是单纯数字上的相加，而是指针对应类型占用字节的相加</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+using namespace std;
+int main(){
+
+    //定义3个长度的int类型数组
+    int scores []{100, 95 , 98};
+
+    //定义一个int类型指针，指向的是数组的首元素
+    int *score_ptr{scores};
+    // int *score_ptr = &amp;scores[0];
+
+    //使用数组的手法打印数组
+    cout &lt;&lt; score_ptr[0]  &lt;&lt; endl; //100
+    cout &lt;&lt; score_ptr[1] &lt;&lt; endl; //95
+    cout &lt;&lt; score_ptr[2] &lt;&lt; endl; //98
+
+////////////////////////////////////////////////////////////
+
+    //取地址
+    cout &lt;&lt; &quot;第1个元素的地址： &quot; &lt;&lt; &amp;scores[0] &lt;&lt; endl; // 0x7ffd1f7f0310
+    cout &lt;&lt; &quot;第2个元素的地址： &quot; &lt;&lt; &amp;scores[1] &lt;&lt; endl; // 0x7ffd1f7f0314
+    cout &lt;&lt; &quot;第3个元素的地址： &quot; &lt;&lt; &amp;scores[2] &lt;&lt; endl; // 0x7ffd1f7f0318
+
+    //打印数组
+    cout &lt;&lt; &quot;第1个元素： &quot; &lt;&lt; *&amp;scores[0] &lt;&lt; endl; // 100
+    cout &lt;&lt; &quot;第2个元素： &quot; &lt;&lt; *&amp;scores[1] &lt;&lt; endl; // 95
+    cout &lt;&lt; &quot;第3个元素： &quot; &lt;&lt; *&amp;scores[2] &lt;&lt; endl; // 98
+
+////////////////////////////////////////////////////////////
+
+    //对指针进行加法运算。由于score_ptr 是int类型，
+    //而int类型占用4个字节，所以每次相加打印出来的地址都会变长4个字节
+    cout &lt;&lt;score_ptr  &lt;&lt; endl; // 0x7ffd1f7f0310
+    cout &lt;&lt;(score_ptr+1)  &lt;&lt; endl; // 0x7ffd1f7f0314
+    cout &lt;&lt;(score_ptr +2) &lt;&lt; endl; // 0x7ffd1f7f0318
+
+    //指针解引用取值
+    cout &lt;&lt;*score_ptr  &lt;&lt; endl; // 100
+    cout &lt;&lt;*(score_ptr+1)  &lt;&lt; endl; // 95
+    cout &lt;&lt;*(score_ptr +2) &lt;&lt; endl; // 98
+
+    //可以使用指针对数组进行修改值
+    scores[2] = 199;
+    cout &lt;&lt; &quot;数组的第3个元素是：&quot; &lt;&lt; *(score_ptr+2) &lt;&lt;endl;
+    *(score_ptr+2) = 200;
+    cout &lt;&lt; &quot;数组的第3个元素是：&quot; &lt;&lt; *(score_ptr+2) &lt;&lt;endl;
+
+    //先对score_ptr进行解引用，然后 +1
+    cout &lt;&lt;&quot;*score_ptr+1 =&quot; &lt;&lt;  *score_ptr+1 &lt;&lt; endl;
+
+    //先对score_ptr+1 然后解引用。
+    cout &lt;&lt;&quot;*(score_ptr+1) = &quot; &lt;&lt;  *(score_ptr+1) &lt;&lt; endl;
+
+    //这是指向最后的元素
+    int *p_last = &amp;scores[2];
+
+    //如果根据这个p_last  取第1元素。
+    cout &lt;&lt; &quot;第1个元素是：&quot; &lt;&lt;  *( p_last-2 )&lt;&lt; endl;
+
+    return 0 ;
+}
+</code></pre></div><h3 id="_6-指针算数"><a href="#_6-指针算数" class="header-anchor">#</a> 6 指针算数</h3> <blockquote><p>指针除了表示存储的是内存地址之外，它也可以做算术运算 和 比较大小。</p> <p>指针可以用关系运算符进行比较，如 ==、&lt; 和 &gt;。如果 p1 和 p2 指向两个相关的变量，比如同一个数组中的不同元素，则可对 p1 和 p2 进行大小比较。</p></blockquote> <h4 id="a-指针递增"><a href="#a-指针递增" class="header-anchor">#</a> a 指针递增</h4> <div class="language-c++ extra-class"><pre class="language-text"><code>score_ptr++
+</code></pre></div><h4 id="b-指针递减"><a href="#b-指针递减" class="header-anchor">#</a> b 指针递减</h4> <div class="language-c++ extra-class"><pre class="language-text"><code>score_ptr--
+</code></pre></div><h4 id="c-等价判断"><a href="#c-等价判断" class="header-anchor">#</a> c 等价判断</h4> <blockquote><p>两个指针的等价判断，实际上是他们指向的地址比较</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>cout&lt;&lt;(score_ptr == p_last)&lt;&lt;endl; // true
+</code></pre></div><h3 id="_7-指针与常量"><a href="#_7-指针与常量" class="header-anchor">#</a> 7 指针与常量</h3> <p>a 指针常量</p> <blockquote><p><code>const int *p</code> 表示指针指向常量 ， 不允许修改对应的值，但是可以指向别的地方， 这和常量修改值一样。</p></blockquote> <p>b 常量指针</p> <blockquote><p><code>int* const p</code> 表示这个指针是常量指针，不能再指向别的地方了，但是可以修改目前指向地方的值</p></blockquote> <p>c 常量指针指向常量</p> <blockquote><p><code>const int* const p</code> 表示这个指针是常量指针，并且它指向的位置的值也是常量</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+int main() {
+
+    int newage = 18;
+    
+    //1. 指向常量的指针，（指针常量）  const int *p
+    //指针常量是修饰数据，让指针以为那份数据是一份常量数据，不允许修改。其实是可以修改。使用变量age就可以修改。
+    int age = 10;
+
+    //要想区分这些，很简单。从中间的*开始左右两边分开。
+    //*的右边，表示指针
+    //*的左边，表示指针指向的数据。
+    const int * p_age = &amp;age;  //但是这个数据并不一定的是常量数据，只是让指针有一种错觉，以为它真的是常量
+
+    //能不能修改指向吗？ 可以修改指向
+    //p_age = &amp;newage;
+
+    //能不能根据指针修改数据吗？ 不允许修改指向位置的值。
+    //*p_age = 88;
+
+
+    //2. 常量指针。  int * const p
+
+    int a = 10 ;
+    int b = 20;
+
+    int * const p2 = &amp;a;
+
+    //能修改目前指向的值吗？ 可以修改指向位置的值
+//    *p2 = 88;
+
+    //能修改指向吗？ 不能修改指向。
+//    p2 = &amp;b;
+
+
+    //3. 常量指针指向常量
+
+    int c = 3;
+    int d = 4;
+
+    const int * const pc = &amp;c;
+
+    //能修改指向位置的值吗？不能
+//    *pc = 33;
+
+    //能修改新的指向吗？不能
+//    pc = &amp;d;
+
+   return 0;
+}
+</code></pre></div><h2 id="二-指针与函数"><a href="#二-指针与函数" class="header-anchor">#</a> 二 指针与函数</h2> <h3 id="_1-参数传递指针"><a href="#_1-参数传递指针" class="header-anchor">#</a> 1 参数传递指针</h3> <blockquote><p>函数的参数，除了传递普通的变量，引用之外，还可以把指针当成参数来传递</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+void changeVal(int * number);
+
+int main() {
+
+    int age = 10;
+
+    //该函数负责修改数值
+    changeVal(&amp;age);
+    
+    cout &lt;&lt; &quot;age =&quot; &lt;&lt; age &lt;&lt;endl;
+
+    return 0;
+}
+
+void changeVal(int * number){
+//    *number = *number * 2;
+
+    //第一个* 表示解引用 ，第二个* 表示乘法运算
+    *number *= 2;
+}
+</code></pre></div><blockquote><p>在某些情况下，传递指针比其他方式的传递要合适得多，比如下面有一个函数负责交换传递进来的两个参数的值， 此时如果不使用指针或者引用，则无法实现该功能</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+void swap(int *a , int *b);
+
+int main() {
+
+
+    int a = 3 ;
+    int b = 4 ;
+
+    //使用函数来交换数据
+    swap( &amp;a , &amp;b);
+
+    cout &lt;&lt; &quot;a = &quot; &lt;&lt; a  &lt;&lt; &quot; , b= &quot; &lt;&lt; b &lt;&lt; endl;
+
+
+    return 0;
+}
+
+void swap(int *a , int *b){
+
+    int *temp = a;  //temp 和  a是一样的
+    a = b;  // a 存的是b的地址。
+    b = temp ;   //b 存放的是a的地址
+
+
+   /* int *temp = a;  //把a的地址给temp . temp 和 a 都指向一块共同的地方，这个地方的数据是3.
+    *a = *b;  // 把a指向的那个地方的数据修改成  4.
+    *b = *temp; // 把temp的数据赋值给b .  temp的数据是4.*/
+    /*
+    int temp = *a ;
+    *a = *b ;
+    *b = temp;*/
+}
+
+</code></pre></div><h3 id="_2-函数返回指针"><a href="#_2-函数返回指针" class="header-anchor">#</a> 2 函数返回指针</h3> <blockquote><p>函数平常除了返回标准的数值之外，其实也可以返回指针。</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+int * calc_max(int * a , int  * b);
+
+
+int main() {
+
+    int x = 10;
+    int y = 20;
+
+    int *p = calc_max(&amp;x, &amp;y);
+
+    cout &lt;&lt; &quot;最大值： &quot; &lt;&lt; *p &lt;&lt; endl;
+
+    return 0;
+}
+
+int * calc_max(int * a , int  * b){
+
+    return *a &gt; *b ? a : b;
+
+    /*if(*a &gt; *b){
+        return a;
+    }
+
+    return b;*/
+}
+
+
+</code></pre></div><blockquote><p><strong>注意</strong>： 不要返回局部变量的引用或者指针 ， 因为本地变量的声明周期应该只位于函数内部。一旦函数执行完毕则被释放。</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+int* getAge2(){
+
+    int age = 66;
+    return &amp;age; 
+}
+ 
+//不推荐
+int&amp; getAge(){
+
+    int age = 66;
+    int &amp;a = age;
+    return a;
+}
+
+int main() {
+    
+    cout &lt;&lt; getAge() &lt;&lt; endl;
+    return 0;
+}
+</code></pre></div><h3 id="_3-二级指针"><a href="#_3-二级指针" class="header-anchor">#</a> 3 二级指针</h3> <blockquote><p>指向指针的指针，即可称之为二级指针。有点类似二维数组，数组里面装的是数组，即可称之为二维数组。</p> <p>二级指针不如一级指针使用的那么频繁，通常出现的地方是作为函数参数传递。如果在函数的内部想要修改外部一级指针指向的数据值，那么则需要二级指针了。</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+void create_pointer(int **p1){
+    //二级指针解引用，会得到一级指针，其实就是得到了外面的 p
+    *p1 = new int(10);
+}
+
+int main() {
+
+//    int age = 10 ;
+//    int *p1 = &amp;age;  // 一级指针
+//    int **p2 = &amp;p1;  //二级指针
+//
+//    cout &lt;&lt; &quot;age的值是：&quot; &lt;&lt; age &lt;&lt; endl;
+//    cout &lt;&lt; &quot;age的值是：&quot; &lt;&lt; *p1 &lt;&lt; endl;
+//    cout &lt;&lt; &quot;age的值是：&quot; &lt;&lt; **p2 &lt;&lt; endl;
+	
+    int *p = nullptr;
+
+    //让p指向堆内存中的一块空间，这块空间里面存放的数据是 10.
+    //函数的参数在传递的时候，执行的是，值的拷贝。
+    create_pointer(&amp;p);
+
+    //指针没有任何指向，是空指针，解引用会出错
+    cout &lt;&lt; &quot;p指向的数据是：&quot; &lt;&lt; *p &lt;&lt; endl;
+    //释放内存
+    delete p ;
+    return 0;
+}
+
+</code></pre></div><h3 id="_4-函数指针"><a href="#_4-函数指针" class="header-anchor">#</a> 4 函数指针</h3> <h4 id="a-基本使用"><a href="#a-基本使用" class="header-anchor">#</a> a 基本使用</h4> <blockquote><p>函数指针的意思是指向函数的指针 。 通常来说，指针是变量，有自己的类型，那么函数指针也有类型。只不过它的类型稍微不一样而已。函数指针的类型由函数的返回值、函数的参数列表决定。 要想声明一个函数指针，只需要使用<code>指针</code>来替换<code>函数名</code>即可。</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+using namespace std;
+
+//函数原型
+int add(int a , int b); 
+
+int main(){
+    
+    //前半段表示声明一个函数指针add_ptr  该函数指针指向的函数返回值是int，并且有两个int类型的参数。
+    //指针的小括号不能省略。
+    int (*add_ptr) (int,int) =add;
+    
+    //普通方式调用函数
+    int result =add(3,4);
+    cout &lt;&lt; &quot;result = &quot; &lt;&lt; result &lt;&lt; endl;
+    
+    //使用函数指针方式调用add函数
+    int result2 = add_ptr(3,4) ;
+    cout &lt;&lt; &quot;result2 = &quot; &lt;&lt; result2 &lt;&lt; endl;
+    
+    return 0 ;
+}
+
+int add(int a , int b){
+    return a + b;
+}
+</code></pre></div><h4 id="b-函数指针作为参数"><a href="#b-函数指针作为参数" class="header-anchor">#</a> b 函数指针作为参数</h4> <blockquote><p>有时候，也可以把某个函数A通过参数的方式传递给另一个函数B，随后在函数B里面执行传递进来的函数A。</p> <p>函数虽然不能直接作为参数来进行传递，但是函数指针可以。实际上在传递的时候，传递的是指针而已。</p> <p>比如下面的示例： 有一个计算的函数<code>calc</code> , 允许在第三个参数传递进来具体的计算函数。</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include&lt;iostream&gt;
+using namespace std;
+
+int add (int a , int b)；
+int calc(int a , int b ,int (*fun)(int, int))；
+
+int main() {
+    //函数指针p，指向add函数
+    //int(*p)(int ,int) = add;
+    //cout &lt;&lt; calc(3,5 , p) &lt;&lt; endl;
+    
+    //函数名称可以直接使用，它实际上就是一个函数指针。
+    cout &lt;&lt; calc(3,5 , add) &lt;&lt; endl;
+    return 0 ;
+}
+int add (int a , int b){
+    return a + b;
+}
+
+//计算的函数，最后的参数要求的是一个函数指针。
+int calc(int a , int b ,int (*fun)(int, int)){
+    return fun(a,b);
+}
+</code></pre></div><h4 id="c-函数指针的作用"><a href="#c-函数指针的作用" class="header-anchor">#</a> c 函数指针的作用</h4> <blockquote><p>如果一个通用的函数，需要使用到 另一个函数，但是这个函数并没有确定名称，是由其他组织或者个人开发的，那么这时候可以预留一个位置，做成函数指针 虚位以待。比如：现在有一个vector或者数组，需要交给其他个人或组织来遍历，但是这些组织或者个人的遍历手法不一样，那么这时候可以使用函数指针占位。</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>
+</code></pre></div><h4 id="d-typedef使用"><a href="#d-typedef使用" class="header-anchor">#</a> d typedef使用</h4></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">12/15/2019, 7:29:17 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/nav.01.cpp/060_cpp_day02.html" class="prev">第二课 vector和函数</a></span> <span class="next"><a href="/nav.01.cpp/cmake.html">CMake</a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.41706e8f.js" defer></script><script src="/assets/js/2.51389f50.js" defer></script><script src="/assets/js/8.1c422b70.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>第二课 vector和函数</title>
+    <meta name="description" content="">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.8bcf7c97.css" as="style"><link rel="preload" href="/assets/js/app.41706e8f.js" as="script"><link rel="preload" href="/assets/js/2.51389f50.js" as="script"><link rel="preload" href="/assets/js/7.d6ae7451.js" as="script"><link rel="prefetch" href="/assets/js/10.cd0625d2.js"><link rel="prefetch" href="/assets/js/11.9bd4269c.js"><link rel="prefetch" href="/assets/js/12.a15ac871.js"><link rel="prefetch" href="/assets/js/13.dffbe176.js"><link rel="prefetch" href="/assets/js/14.0ce779eb.js"><link rel="prefetch" href="/assets/js/15.bb60422f.js"><link rel="prefetch" href="/assets/js/16.6af4ae15.js"><link rel="prefetch" href="/assets/js/17.48bb69a1.js"><link rel="prefetch" href="/assets/js/3.04b10534.js"><link rel="prefetch" href="/assets/js/4.9af38017.js"><link rel="prefetch" href="/assets/js/5.61ebafaf.js"><link rel="prefetch" href="/assets/js/6.208e3d0b.js"><link rel="prefetch" href="/assets/js/8.1c422b70.js"><link rel="prefetch" href="/assets/js/9.003ef7de.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.8bcf7c97.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/nav.01.cpp/" class="nav-link router-link-active">CPP</a></div><div class="nav-item"><a href="/nav.02.python/" class="nav-link">Python</a></div><div class="nav-item"><a href="/nav.03.opencv/" class="nav-link">OpenCV</a></div><div class="nav-item"><a href="/nav.04.ros/" class="nav-link">ROS</a></div><div class="nav-item"><a href="/nav.05.dl/" class="nav-link">深度学习</a></div><div class="nav-item"><a href="/nav.06.about/" class="nav-link">about</a></div><div class="nav-item"><a href="https://github.com/Is060" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/nav.01.cpp/" class="nav-link router-link-active">CPP</a></div><div class="nav-item"><a href="/nav.02.python/" class="nav-link">Python</a></div><div class="nav-item"><a href="/nav.03.opencv/" class="nav-link">OpenCV</a></div><div class="nav-item"><a href="/nav.04.ros/" class="nav-link">ROS</a></div><div class="nav-item"><a href="/nav.05.dl/" class="nav-link">深度学习</a></div><div class="nav-item"><a href="/nav.06.about/" class="nav-link">about</a></div><div class="nav-item"><a href="https://github.com/Is060" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>CPP</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/nav.01.cpp/" class="sidebar-link">/nav.01.cpp/</a></li><li><a href="/nav.01.cpp/060_cpp_day01.html" class="sidebar-link">第一课 c++的入门</a></li><li><a href="/nav.01.cpp/060_cpp_day02.html" class="active sidebar-link">第二课 vector和函数</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day02.html#一-vector" class="sidebar-link">一 Vector</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day02.html#_1-声明和初始化" class="sidebar-link">1 声明和初始化</a></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day02.html#_2-访问vector" class="sidebar-link">2 访问vector</a></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day02.html#_3-操作vector" class="sidebar-link">3 操作vector</a></li></ul></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day02.html#二-函数" class="sidebar-link">二 函数</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day02.html#_1-定义函数" class="sidebar-link">1 定义函数</a></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day02.html#_2-函数原型" class="sidebar-link">2 函数原型</a></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day02.html#_3-分离式编译" class="sidebar-link">3 分离式编译</a></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day02.html#_4-函数重载" class="sidebar-link">4 函数重载</a></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day02.html#_5-函数参数" class="sidebar-link">5 函数参数</a></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day02.html#_6-函数是如何被调用工作的" class="sidebar-link">6 函数是如何被调用工作的</a></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day02.html#_7-内联函数" class="sidebar-link">7  内联函数</a></li><li class="sidebar-sub-header"><a href="/nav.01.cpp/060_cpp_day02.html#_8-范围规则" class="sidebar-link">8 范围规则</a></li></ul></li></ul></li><li><a href="/nav.01.cpp/060_cpp_day03.html" class="sidebar-link">第三课 指针</a></li><li><a href="/nav.01.cpp/cmake.html" class="sidebar-link">CMake</a></li><li><a href="/nav.01.cpp/cpp_detail.html" class="sidebar-link">CPP的小细节</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Python</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>OpenCV</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Ros</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>深度学习</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="第二课-vector和函数"><a href="#第二课-vector和函数" class="header-anchor">#</a> 第二课 vector和函数</h1> <h2 id="一-vector"><a href="#一-vector" class="header-anchor">#</a> 一 Vector</h2> <blockquote><p>vector其实很大程度上和数组一样，只是，数组是固定长度，而vector是不定长度（动态增长）。</p> <p>vector 在C++STL(标准模板库)中的一个容器，可以看成是对容器的一种扩展。在运行时可以改变长度 , 与数组具有相似的语法 , 相比数组更高效 , 提供越界检查</p></blockquote> <h3 id="_1-声明和初始化"><a href="#_1-声明和初始化" class="header-anchor">#</a> 1 声明和初始化</h3> <blockquote><p>使用vector除了要导入<code>#include &lt;vecotr&gt;</code>之外，由于它声明于std命名空间里面，所以要配合std命名空间使用</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+
+using namespace std;
+
+int main() {
+
+    //ｖｅｃｔｏｒ是一个容器，里面只能装同一种的数据类型．
+    int scores[6];
+
+    // 1. 仅仅是声明而已。   
+    // 假设声明了10个空间，要放入15个空间的数据，则在新的地方挖出来15个空间的位置，然后把10个空间的数据拷贝过去。对系统表示，这原来这10个空间的内存可以被回收了。
+    vector&lt;int&gt; v(1);
+
+    //2. 往里面赋值
+    v.push_back(10);
+    v.push_back(20);
+
+    //3. 声明并初始化
+    vector&lt;string&gt; ss{&quot;aa&quot;,&quot;bb&quot;,&quot;cc&quot;};
+    
+    return 0;
+}
+</code></pre></div><h3 id="_2-访问vector"><a href="#_2-访问vector" class="header-anchor">#</a> 2 访问vector</h3> <blockquote><p>访问 <code>vector</code>中的元素有两种方式，一是仍以数组的方式，另一种是使用<code>vector</code>提供的<code>at</code>函数</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+
+using namespace std;
+
+int main() {
+
+    vector&lt;int&gt; scores{80,90,95,100,88};
+
+    //1. 以数组的方式取值  //这种方式不会进行边界越界检查
+    cout &lt;&lt; scores[0] &lt;&lt; &quot; = &quot; &lt;&lt; scores[1] &lt;&lt; &quot; = &quot;&lt;&lt; scores[2] &lt;&lt; &quot; = &quot;&lt;&lt; scores[3]&lt;&lt; &quot; = &quot;&lt;&lt; scores[4]&lt;&lt;endl;
+
+    //也可以使用下标的方式赋值
+    scores[0] = 66;
+    scores[1] = 77 ;
+
+    //2. 以vector本身提供的方式取值 //会进行越界检查
+    cout &lt;&lt;
+        scores.at(0) &lt;&lt; &quot; = &quot; &lt;&lt;
+        scores.at(1) &lt;&lt; &quot; = &quot;&lt;&lt;
+        scores.at(2) &lt;&lt; &quot; = &quot;&lt;&lt;
+        scores.at(3)&lt;&lt; &quot; = &quot;&lt;&lt;
+        scores.at(4)&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre></div><h3 id="_3-操作vector"><a href="#_3-操作vector" class="header-anchor">#</a> 3 操作vector</h3> <h4 id="a-一维vector"><a href="#a-一维vector" class="header-anchor">#</a> a 一维vector</h4> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+
+using namespace std;
+
+int main() {
+
+    vector&lt;int&gt; scores{77,88,99,100,85 , 78};
+
+   /* //1. 可以往里面追加元素
+    scores.push_back(66);
+    scores.push_back(79);
+
+
+    //2. 查看vector的数据
+    for (int i = 0; i &lt; scores.size(); ++i) {
+        cout &lt;&lt; &quot;分数=&quot; &lt;&lt; scores.at(i) &lt;&lt; endl;
+    }
+
+    for(int s : scores){
+        cout &lt;&lt; &quot;分数2=&quot; &lt;&lt; s &lt;&lt; endl;
+    }
+*/
+
+    return 0;
+}
+</code></pre></div><h4 id="b-二维vector"><a href="#b-二维vector" class="header-anchor">#</a> b 二维vector</h4> <blockquote><p>二维vector和二维数组实际上差不太多，二维数组是数组里面装的是数组，二维vector指的是vector里面装的还是vector，在未来碰到矩阵相关的存储操作，多半使用vector来作为媒介</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+
+using namespace std;
+
+int main() {
+
+/*
+    //1. 定义整个最外层的容器
+    vector&lt;vector&lt;int&gt;&gt; scores;
+
+    //2. 定义3个班的容器
+    vector&lt;int&gt; scores1 {100,89,80,78,90};
+    vector&lt;int&gt; scores2{100,89,80,78,90};
+    vector&lt;int&gt; scores3{100,89,80,78,90};
+
+    //3. 把3个班的成绩装到外层容器里面去。
+    scores.push_back(scores1);
+    scores.push_back(scores2);
+    scores.push_back(scores3);*/
+
+
+    //一步到位的写法：
+    vector&lt;vector&lt;int&gt;&gt; newscores{
+            {100,89,80,78,90},
+            {88,36,79,78,50},
+            {65,76,67,34,90}
+    };
+
+/*
+    //遍历
+    for(int i = 0 ; i &lt; newscores.size() ; i++){
+        for(int j = 0 ; j&lt; newscores[i].size(); j++){
+//            cout &lt;&lt; &quot; &quot; &lt;&lt; newscores[i][j];
+            cout &lt;&lt; &quot; &quot; &lt;&lt; newscores.at(i).at(j);
+        }
+        cout &lt;&lt; endl;
+    }*/
+
+
+//    vector&lt; vector&lt;int&gt;  &gt; newscores
+    for(vector&lt;int&gt; vectors : newscores){
+        for(int score :vectors){
+            cout &lt;&lt; &quot; &quot; &lt;&lt; score;
+        }
+        cout &lt;&lt; endl;
+    }
+
+    cout &lt;&lt; &quot;----------------------------------------&quot; &lt;&lt; endl;
+
+    for(auto vectors : newscores){
+        for(auto score :vectors){
+            cout &lt;&lt; &quot;1= &quot; &lt;&lt; score;
+        }
+        cout &lt;&lt; endl;
+    }
+    return 0;
+}
+</code></pre></div><h2 id="二-函数"><a href="#二-函数" class="header-anchor">#</a> 二 函数</h2> <h3 id="_1-定义函数"><a href="#_1-定义函数" class="header-anchor">#</a> 1 定义函数</h3> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+
+/*函数返回值  函数名称  函数参数{
+    函数体
+    return xxx;
+};*/
+
+//1. 没有参数，没有返回值
+void sayHi(){
+    cout &lt;&lt; &quot;早上好&quot; &lt;&lt;endl;
+}
+
+//2. 有参数，没有返回值
+void sayHi02(string name){ // string name = &quot;张三&quot;
+    cout &lt;&lt; name &lt;&lt; &quot; , 早上好&quot; &lt;&lt; endl;
+}
+
+//3. 无参数，有返回值
+string sayHi03(){
+    return &quot;李四，早上好&quot; ;
+}
+
+//4. 有参数，有返回值
+string sayHi04(string name){
+    return name + &quot; , 晚上好&quot;;
+}
+
+int main() {
+    sayHi();
+    sayHi02(&quot;张三&quot;);
+
+    //获取函数的返回值
+    string result = sayHi03(); //string result = &quot;李四，早上好&quot;;
+    cout &lt;&lt; result &lt;&lt; endl;
+    
+    string result02 = sayHi04(&quot;王五&quot;);
+    cout &lt;&lt; result02 &lt;&lt; endl;
+    return 0;
+}
+</code></pre></div><h3 id="_2-函数原型"><a href="#_2-函数原型" class="header-anchor">#</a> 2 函数原型</h3> <blockquote><p>一般来说，c++的函数一般包含声明和定义两个部分。因为c++是静态类型语言，程序属于自上而下编译，所以在使用函数前，必须先表示函数的存在，告诉编译器函数所需要的参数以及函数的返回值是什么</p> <p>把函数分成声明和定义两部分，函数的原型定义在调用的前面，具体实现可以放在后面</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+//函数的原型， 也叫做声明函数，并不知道这个函数具体是如何实现的。只是有一些基本架子而已
+void run();
+
+//有一个函数，名字叫做add, 有两个参数，都是int类型，有返回值 是 int类型
+int add(int a , int b);
+
+int main() {
+    
+   run();
+    
+   int result =  add(3,4);
+
+    return 0;
+}
+
+int add(int a , int b){
+    return a + b;
+}
+
+//定义函数 ，函数的真正实现
+void run(){
+    cout &lt;&lt; &quot;学生在跑步&quot; &lt;&lt;endl;
+}
+</code></pre></div><h3 id="_3-分离式编译"><a href="#_3-分离式编译" class="header-anchor">#</a> 3 分离式编译</h3> <blockquote><p>一般说来，函数的声明 ( 函数原型 )通常都会放到头文件中，之所以称之为头文件是因为它总是在main函数的前面就引入进来。头文件一般以 .h 或者 .hpp 结尾，通常用于 写类的声明（包括类里面的成员和方法的声明）、函数原型、#define常数等，但一般来说不写出具体的实现</p></blockquote> <p>math.h</p> <div class="language-c++ extra-class"><pre class="language-text"><code>/*
+ * 这三句话用于解决头文件被重复include的问题
+ */
+
+#ifndef DAY02_MATH_H   //if no define 如果定义了这个标记，标记的名称来源： _工程的名字_头文件的名字_H  为了区分唯一性。
+#define DAY02_MATH_H  //则定义这个标记
+//函数声明
+int add (int a , int b);
+#endif //DAY02_HEADER_H  //结束判断
+</code></pre></div><p>math.cpp</p> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &quot;math.h&quot;
+
+//函数定义 ，函数的真正实现。
+int add(int a , int b){
+    return a + b ; 
+}
+</code></pre></div><p>main.cpp</p> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;  
+#include &quot;math.h&quot; 
+// include的时候 &lt;&gt;用于导入编译环境提供的文件。 如果要导入自己定义的文件，使用&quot;&quot;
+// &quot;&quot; 会先在当前的工程查找这个文件，如果这个文件不存在，则会到提供的系统(即gcc编译环境去找)里面去找。
+int main(){
+    add(1 ,2);
+    return 0 ;
+}
+</code></pre></div><p>CMakeLists.txt</p> <div class="language-cmake extra-class"><pre class="language-cmake"><code><span class="token keyword">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.14</span><span class="token punctuation">)</span>
+<span class="token keyword">project</span><span class="token punctuation">(</span>day02<span class="token punctuation">)</span>
+
+<span class="token keyword">set</span><span class="token punctuation">(</span><span class="token variable">CMAKE_CXX_STANDARD</span> <span class="token number">14</span><span class="token punctuation">)</span>
+<span class="token comment">#  main.cpp 使用 #include &quot;math.cpp&quot; 的话</span>
+<span class="token comment"># add_executable(09_function_header  09_function_header.cpp)</span>
+<span class="token comment"># main.cpp 使用 #include &quot;math.h&quot; 的话，则需要表示还有哪些文件要编译，否则math.cpp这个源文件不会被编译</span>
+<span class="token keyword">add_executable</span><span class="token punctuation">(</span>09_function_header  09_function_header.cpp math.cpp<span class="token punctuation">)</span>
+</code></pre></div><h3 id="_4-函数重载"><a href="#_4-函数重载" class="header-anchor">#</a> 4 函数重载</h3> <blockquote><p>在许多语言中，经常会见到两个或者两个以上的函数名称是一样的，当然他们的 <strong>参数个数</strong> 或者 <strong>参数类型</strong> 或者是 <strong>参数的顺序</strong> 是不一样的。这种现象有一个学名叫做 <strong>重载</strong> overload， 由于python属于动态类型语言，不区分数据类型，参数可以是任意类型，所以它没有重载。</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+using namespace std;
+/*
+ *
+ * 重载的函数，调用的时候，会根据实际参数的个数、类型来决定究竟执行哪一个函数。
+ *
+ *  重载的特征是什么：
+ *      1. 具有相同的函数名
+ *      2. 参数个数不同 ,参数类型不同， 参数的顺序不同。
+ */
+
+void a(int x , char y){
+
+}
+
+void a(char y , int x){
+
+}
+
+int add(int a , int b){
+    return a + b;
+}
+
+int add(int a , int b, int c){
+    return a + b + c;
+}
+
+int add(double a , double b){
+    return a + b;
+}
+
+int main(){
+
+    add(3,4);
+
+    add(1,2,3);
+
+    add(4.5 ,1.5);
+    
+    cout &lt;&lt; add(1,2) &lt;&lt; endl;
+    cout &lt;&lt; add(1,2 , 3) &lt;&lt; endl;
+    cout &lt;&lt; add(1.5,2.5) &lt;&lt; endl;
+
+    return 0 ;
+}
+</code></pre></div><h3 id="_5-函数参数"><a href="#_5-函数参数" class="header-anchor">#</a> 5 函数参数</h3> <blockquote><p>python的函数，在传递参数的时候，有可变对象和不可变对象的现象，那么在C++里面也有类似的说法。只不过是另一种说辞罢了。</p> <p>python中传递不可变对象，在C++中，对应的是值的拷贝，也就是传递的只是数据的一份拷贝而已。在函数内部修改数据，并不会改变外部数据</p> <p>python中传递可变对象，在c++中，对应的是引用传递，也就是传递的是对象的引用，而不是拷贝。在函数内部修改数据，会导致外部数据也发生改变。</p></blockquote> <h4 id="a-值拷贝传递"><a href="#a-值拷贝传递" class="header-anchor">#</a> a 值拷贝传递</h4> <blockquote><p>C++默认情况下，处理函数参数传递时，多数使用的是值的拷贝，少数部分除外。</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int sccle_max(int number){  // int number  = 105;
+
+    if(number &gt; 100){
+        number = 100;
+    }
+    return number ;
+}
+
+void a(int x){ //int x= 105;
+    x = 0;
+}
+
+int main(){
+	//这里传递进去105. 但是只是执行了数据的拷贝，函数内部不管改成多少，外部的这个number还是105
+    int number = 105 ;
+    cout &lt;&lt;  sccle_max(number) &lt;&lt; endl;
+    cout &lt;&lt; &quot;number  =&quot; &lt;&lt; number &lt;&lt; endl;
+    
+    //这里传递进去105. 但是只是执行了数据的拷贝，函数内部不管改成多少，外部的这个number还是105
+    a(number);
+    cout &lt;&lt; &quot;number2  =&quot; &lt;&lt; number &lt;&lt; endl;
+
+    return 0 ;
+}
+</code></pre></div><h4 id="b-传递数组"><a href="#b-传递数组" class="header-anchor">#</a> b 传递数组</h4> <blockquote><p>函数的参数除了能传递普通简单的数据之外，数组也是可以传递的。但是数组稍微有点特殊，这里多做讲解。</p> <ol><li>前面提过，形参实际上就是实参的一份拷贝，就是一个局部变量。</li> <li>数组的数据太大，如果都进行拷贝，那么比较麻烦，也造成了浪费</li> <li>所以实际上传递数组的时候，并不会进行整个数组的拷贝，而只是传递数组的第一个元素内存地址 （指针 ） 进来。</li> <li>数组的数据还是在内存中，只是把第一个元素（也就是数组的起始）内存地址传进来而已。</li> <li>这就造成了函数的内部根本无法知道这个数组的元素有多少个。</li></ol></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+using namespace std;
+
+// 数组是一串连续性的地址存放的数据，而且数组是一个容器。
+// 这里传递的时候，传递的是数组的第一个元素的内存地址。（指针 =  内存地址）
+void printArray(int scores[]){
+    scores[3] = 77;
+
+}
+
+void printArray2(int scores[]){
+
+    cout &lt;&lt; &quot;scores.sizeof = &quot; &lt;&lt; sizeof(scores) &lt;&lt; endl; // 内存地址，大小为8
+    cout &lt;&lt; &quot;int.sizeof = &quot; &lt;&lt; sizeof(int) &lt;&lt; endl; // int数据，大小为4
+
+    for(int i = 0 ; i &lt; sizeof(scores) / sizeof(int) ; i++){
+        cout &lt;&lt; &quot; &quot; &lt;&lt; scores[i]; // 打印结果： 70 80
+    }
+}
+
+void printArray3(int scores[] , int length) {
+
+    for(int i = 0 ; i &lt; length ; i++){
+        cout &lt;&lt; &quot; &quot; &lt;&lt; scores[i];
+    }
+
+    //数组不支持使用范围for循环遍历。 迭代器。
+    /*for(int s : scores){
+
+    }*/
+}
+
+
+int main(){
+
+    int scores[]{70,80,90,100,88};
+
+    scores[3] = 66;
+    cout &lt;&lt; &quot;第四个元素：&quot; &lt;&lt; scores[3] &lt;&lt; endl; // 66
+
+    printArray(scores);
+    cout &lt;&lt; &quot;第四个元素：&quot; &lt;&lt; scores[3] &lt;&lt; endl; // 77
+	
+    printArray2(scores);
+    
+	cout &lt;&lt; &quot;main:: scores.sizeof = &quot; &lt;&lt; sizeof(scores) &lt;&lt; endl; // 20
+    cout &lt;&lt; &quot;main:: int.sizeof = &quot; &lt;&lt; sizeof(int) &lt;&lt; endl; // 4
+    printArray3(scores , sizeof(scores) / sizeof(int)); // 打印结果： 70 80 90 77 88
+
+    return 0 ;
+}
+</code></pre></div><h4 id="c-传递引用"><a href="#c-传递引用" class="header-anchor">#</a> c 传递引用</h4> <blockquote><p>目前为止，我们所有函数的参数传递，都是对数据进行了一份拷贝（数组除外）。那么在函数的内部是不能修改值的，因为这仅仅是一份值得拷贝而已（函数外部的值并不会受到影响）。如果真的想在函数内部修改值，那么除了数组之外，还有一种方式就是传递<code>引用</code>。</p> <p>引用实际上只是原有数据的一种别名称呼而已，使用 <code>&amp;</code> 定义</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+using namespace std;
+
+/*
+ *
+ * 传值的方式，会拷贝，消耗内存，效率有点低， 安全。
+ *
+ * 传递引用的方式，不会拷贝，不管函数外部还是函数内部，使用的都是同一份数据，不消耗内存，效率高一点，可以修改数据，不安全
+ *  如果以后函数的内部期望修改外部的数据，那么可以使用引用的方式传递数据，除了之外还可以使用指针的方式。
+
+ */
+
+void changeValue(int &amp; a){  //表示传递进来一个int类型数据的引用
+    a = 0 ;
+}
+
+int main(){
+
+    int age = 33;
+    changeValue(age);
+    cout &lt;&lt; age &lt;&lt; endl;// 0
+
+    int a = 6;
+    int b = a ;
+    a = 7 ;
+
+    cout &lt;&lt; &quot;a = &quot; &lt;&lt; a &lt;&lt; &quot;  b = &quot; &lt;&lt; b &lt;&lt; endl; // a = 7  b = 6
+
+    int c = 8;  // c是一个体
+    int &amp;d = c; // d 只是 c 的一个别名而已。 操作d等同于操作C。  引用相当于外号。
+
+    d = 99 ;
+    cout &lt;&lt; &quot;c = &quot; &lt;&lt; c &lt;&lt; &quot;  d = &quot; &lt;&lt; d &lt;&lt; endl; // c = 99  d = 99
+    
+    return 0 ;
+}
+</code></pre></div><h4 id="d-传递vector"><a href="#d-传递vector" class="header-anchor">#</a> d 传递vector</h4> <blockquote><p>vector和普通的数据一样，传递的时候，做的是值的拷贝。数据有点浪费，只想传递引用，怎么办呢？</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+using namespace std;
+
+void printVector( vector&lt;int&gt; &amp;scores);
+void printVector2( vector&lt;int&gt; &amp;scores);
+
+int main(){
+
+    int a = 3 ;
+
+    vector&lt;int&gt; scores{60,80,70,90,100};
+
+    printVector(scores);
+    cout &lt;&lt; &quot; 0 = &quot; &lt;&lt; scores[0] &lt;&lt; endl; // 60
+
+    printVector2(scores);
+    cout &lt;&lt; &quot; 0 = &quot; &lt;&lt; scores[0] &lt;&lt; endl; // 99
+    return 0 ;
+}
+
+void printVector( vector&lt;int&gt;  &amp;scores){  //这里确实是传递引用
+
+    //遍历每一个元素
+        for(int s : scores){ //发生了一次拷贝。
+            //如果发现了60, 就把60 改成99;
+            if(s == 60){  //这里修改的仅仅是 变量s的值，不是scores这个容器的第0个位置。
+                s = 99 ;
+            }
+        }
+}
+
+void printVector2( vector&lt;int&gt;  &amp;scores){  
+
+    //遍历每一个元素
+    for(int &amp;s : scores){ // 传递引用
+        
+        if(s == 60){  
+            s = 99 ;
+        }
+    }
+}
+</code></pre></div><h3 id="_6-函数是如何被调用工作的"><a href="#_6-函数是如何被调用工作的" class="header-anchor">#</a> 6 函数是如何被调用工作的</h3> <blockquote><ol><li>函数是使用函数调用栈，来管理函数调用工作的
+a. 类似盒子的栈
+b. 遵循后进先出
+c. 可以往里面执行压栈和出栈动作（push 和 pop）</li> <li>栈的结构和激活记录
+a. 函数必须把它的返回值返回给调用它的函数(A ---&gt; B)
+b. 每次函数的调用都需要创建一次激活记录，然后把它压入栈中(push)
+c. 当一个函数被调用完毕的时候，就需要从栈中弹出（pop）
+d. 函数的参数以及内部的局部变量都是存储在栈中。</li> <li>函数栈有可能抛出栈溢出异常（Stack Overflow）
+a. 一旦函数调用栈中被push进来的函数记录过多，就有可能出现。（例如：无限循环调用）</li></ol></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+
+using namespace std;
+
+void func2(int &amp;x , int y , int z){
+    x += y+z;
+}
+
+int func1(int a , int b){
+    int result{};
+    result += a + b;
+    func2(result , a , b );
+
+    // func1( result , a); // 会导致无限循环
+    return result ;
+}
+
+int main (){
+    int x{10};
+    int y{20};
+    int z{};
+
+    z = func1(x , y );
+    
+    cout &lt;&lt; z &lt;&lt; endl; // 60
+    return 0 ;
+}
+</code></pre></div><h3 id="_7-内联函数"><a href="#_7-内联函数" class="header-anchor">#</a> 7  内联函数</h3> <blockquote><p>函数可以使我们复用代码，但是一个函数的执行，需要开辟空间、形参和实参进行值得拷贝，还要指明函数返回、以及最后回收释放资源的动作，这个过程是要消耗时间的。</p> <p>增加了 inline 关键字的函数称为“内联函数”。内联函数和普通函数的区别在于：当编译器处理调用内联函数的语句时，不会将该语句编译成函数调用的指令，而是直接将整个函数体的代码插人调用语句处，就像整个函数体在调用处被重写了一遍一样。</p> <p>有了内联函数，就能像调用一个函数那样方便地重复使用一段代码，而不需要付出执行函数调用的额外开销。很显然，使用内联函数会使最终可执行程序的体积增加。以时间换取空间，或增加空间消耗来节省时间，这是计算机学科中常用的方法。</p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+
+using namespace std;
+
+//函数作为一个 个体存在，能够鲜明的表示这段代码的用意
+inline int add(int a ,int b){
+    return a + b;
+}
+
+int main (){
+
+
+    int x = 3 ;
+    int y = 4;
+
+    int result = add(x  ,y) ;
+  
+    cout &lt;&lt; result &lt;&lt; endl;
+
+    return 0 ;
+}
+
+</code></pre></div><h3 id="_8-范围规则"><a href="#_8-范围规则" class="header-anchor">#</a> 8 范围规则</h3> <blockquote><p>在学习过程，我们会定义很多变量或者引用，这些变量由于定义的位置不同，所以它们的作用域范围也不同。一般会划分成几种类型： <code>代码块</code> | <code>局部变量</code> | <code>静态变量</code> | <code>全局变量</code></p></blockquote> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+
+using namespace std;
+
+int number = 99 ;  // 全局变量
+
+// 默认情况下，变量或者是对象的使用，基于就近原则。
+int local_variable(){
+    int number  = 100; // 局部变量 | 本地变量  :: 称之为域符号 表示作用域
+    cout &lt;&lt; &quot;local::number =&quot; &lt;&lt; ::number &lt;&lt; endl;// 99
+
+}
+
+//静态变量
+void static_local_example(){
+
+    //static : 表示静态
+    static int num{100}; //只会执行一次。
+    cout &lt;&lt; &quot;num =&quot;&lt;&lt; num &lt;&lt; endl;
+    num+=100;
+    cout &lt;&lt; &quot;num =&quot;&lt;&lt; num &lt;&lt; endl;
+}
+
+int main (){
+
+    static_local_example(); // 100 ， 200
+    static_local_example(); // 200 ， 300
+
+
+    local_variable();
+
+    cout &lt;&lt; &quot; main::number = &quot; &lt;&lt; number &lt;&lt; endl;//99
+
+
+    {  //代码块 
+        int age = 10; 
+        cout &lt;&lt; &quot;age =&quot; &lt;&lt; age &lt;&lt; endl;//10
+    }
+    
+    return 0 ;
+}
+
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">12/15/2019, 7:29:17 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/nav.01.cpp/060_cpp_day01.html" class="prev">第一课 c++的入门</a></span> <span class="next"><a href="/nav.01.cpp/060_cpp_day03.html">第三课 指针</a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.41706e8f.js" defer></script><script src="/assets/js/2.51389f50.js" defer></script><script src="/assets/js/7.d6ae7451.js" defer></script>
+  </body>
+</html>
